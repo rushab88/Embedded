@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Embedded Signup</title>
+</head>
+
+<body>
+
+    <h2>Connect WhatsApp Business</h2>
+
+    <button onclick="launchWhatsAppSignup()">
+        Connect WhatsApp Business
+    </button>
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '28513457278313811',
+                cookie: true,
+                xfbml: true,
+                version: 'v23.0'
+            });
+
+            FB.AppEvents.logPageView();
+        };
+
+        function launchWhatsAppSignup() {
+
+            FB.login(function (response) {
+
+                console.log("Facebook Login Response:");
+                console.log(response);
+
+                if (response.authResponse) {
+
+                    console.log(
+                        "User access token:",
+                        response.authResponse.accessToken
+                    );
+
+                } else {
+
+                    console.log("User cancelled login.");
+
+                }
+
+            }, {
+                config_id: '1738668194928690',
+                response_type: 'code',
+                override_default_response_type: true,
+                extras: {
+                    setup: {}
+                }
+            });
+        }
+    </script>
+
+    <!-- Facebook SDK -->
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js">
+    </script>
+
+</body>
+</html>
