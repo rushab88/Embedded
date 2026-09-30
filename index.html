@@ -28,32 +28,22 @@
 
         function launchWhatsAppSignup() {
 
-            FB.login(function (response) {
+           FB.login(function (response) {
+    console.log("Facebook Login Response:", response);
 
-                console.log("Facebook Login Response:");
-                console.log(response);
-
-                if (response.authResponse) {
-
-                    console.log(
-                        "User access token:",
-                        response.authResponse.accessToken
-                    );
-
-                } else {
-
-                    console.log("User cancelled login.");
-
-                }
-
-            }, {
-                config_id: '1738668194928690',
-                response_type: 'code',
-                override_default_response_type: true,
-                extras: {
-                    setup: {}
-                }
-            });
+    if (response.authResponse && response.authResponse.code) {
+        const code = response.authResponse.code;
+        console.log("Embedded Signup authorization code received.");
+        console.log(code);
+    }
+}, {
+    config_id: "1412092870510258",
+    response_type: "code",
+    override_default_response_type: true,
+    extras: {
+        setup: {}
+    }
+});
         }
     </script>
 
